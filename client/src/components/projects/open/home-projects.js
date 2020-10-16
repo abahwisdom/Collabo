@@ -8,7 +8,7 @@ const DisplayProjects=(props)=>{
     const [display, setDisplay]= useState('block');
     
     useEffect(()=>{
-        if (props.search==''){setDisplay('block')}
+        if (props.search===''){setDisplay('block')}
         else if (props.project.title.toLowerCase().includes(props.search.toLowerCase())===false&&
         props.project.description.toLowerCase().includes(props.search.toLowerCase())===false){
           setDisplay('none')
@@ -21,8 +21,6 @@ const DisplayProjects=(props)=>{
         <Card className="mt-2">
         <Card.Header className=' text-white'><h5>{props.project.title}</h5></Card.Header>
           <Card.Body>
-            {/* <Card.Title>{props.project.title.toUpperCase()}</Card.Title>
-      <Card.Subtitle className="mb-2 text-muted">Created by: {props.project.creator_name}</Card.Subtitle> */}
             <Card.Text>
             <h6 style={{'font-size':'smaller'}}>{props.project.date}</h6>
               <h6>{props.project.description}</h6>

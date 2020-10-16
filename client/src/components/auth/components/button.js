@@ -10,7 +10,7 @@ const MyButton=(props)=>{
     variant={props.variant}
     type={props.type}
     onClick={props.handleClick}
-    disabled={props.disabled}
+    disabled={props.stillSubmitting}
     size={props.size}
     >
         {props.stillSubmitting && <Spinner animation="border" className="align-middle spinner-button" role="status"/>}
@@ -27,7 +27,7 @@ MyButton.defaultProps={
     label: 'No Label',
     stillSubmitting: false,
     // handleClick:(e)=>{e.preventDefault()},
-    disabled: false,
+    // disabled: false,
     type: 'button',
     size: ''
 }

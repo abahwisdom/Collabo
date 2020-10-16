@@ -41,7 +41,7 @@ router.get('/', (req, res)=>{
 router.get('/:uid', (req, res)=>{
     Project.find({creator_UID:req.params.uid, closed:false}).sort({date:-1})
     .then((project)=>{
-        console.log('call made');
+        // console.log('call made');
         res.json(project)})
     .catch((err)=>{res.status(400).json({"error": err})});
 });
@@ -57,7 +57,7 @@ router.get('/:uid/closed', (req, res)=>{
 //Display OPEN Projects User is part of 
 //GET
 router.get('/:uid/other', (req, res)=>{
-    Project.find()
+    Project.find().sort({date:-1})
     .then((projects)=>{
        const list=[];
             // if (!projects) return;
@@ -98,6 +98,18 @@ router.put('/:id/close', (req, res)=>{
     Project.findById(req.params.id)
     .then((project)=>{
         project.closed= true;
+        project.save()
+        .then((project)=>{res.json(project)}).catch((err)=>{res.status(400).json(err.message)});
+    })
+    .catch((err)=>{res.status(400).json("No project with id")});
+});
+
+//Close Project
+//PUT
+router.put('/:id/open', (req, res)=>{
+    Project.findById(req.params.id)
+    .then((project)=>{
+        project.closed= false;
         project.save()
         .then((project)=>{res.json(project)}).catch((err)=>{res.status(400).json(err.message)});
     })
@@ -253,7 +265,7 @@ router.delete('/:id/task/:tid', (req, res)=>{
     Project.findById(req.params.id)
     .then((project)=>{
         const thisIndex= project.tasks.findIndex((task)=>task.task_id==req.params.tid);
-        console.log(thisIndex);
+        // console.log(thisIndex);
         project.tasks.splice(thisIndex, 1);
         project.save()
         .then(()=>{res.json(project)})
@@ -343,7 +355,7 @@ router.delete('/:id/member/:muid', (req, res)=>{
     Project.findById(req.params.id)
     .then((project)=>{
         const thisIndex= project.members.findIndex((member)=>member.member_id===req.params.muid);
-        console.log(thisIndex);
+        // console.log(thisIndex);
         project.members.splice(thisIndex, 1);
         project.save()
         .then(()=>{res.json(project)})

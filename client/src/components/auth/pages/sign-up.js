@@ -21,17 +21,22 @@ const SignUp=({
 
     function handleSubmit({name, email, password}){
         setSubmitting(true);
-        console.log({name, email, password});
+        // console.log({name, email, password});
          // Create user object
             const user = {
                 name,
                 email,
                 password
             };
-        
-            // Attempt to login
-            register(user);
 
+            async function log (){
+              await register(user);;
+            }
+
+            // Attempt to login
+            log().then((res)=>{
+              setSubmitting(false);
+            })
         
     }
 
@@ -46,9 +51,7 @@ const SignUp=({
     
         // If authenticated
           if (isAuthenticated) {
-            clearErrors();
-            // history.push('/')
-            window.location.href='/home'
+            history.push('/home')
           }
     
       }, [error, isAuthenticated]);

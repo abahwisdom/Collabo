@@ -9,7 +9,7 @@ const ResetPassword=(props)=>{
 
     function handleSubmit(data){
         setSubmitting(true);
-        console.log(data);
+        // console.log(data);
         setSubmitting(false);
     }
 

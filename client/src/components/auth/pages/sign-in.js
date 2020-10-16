@@ -21,15 +21,22 @@ const SignIn=({
 
     function handleSubmit({email, password}){
         setSubmitting(true);
-        console.log({email, password});
+        // console.log({email, password});
          // Create user object
             const user = {
                 email,
                 password
             };
-        
+
+            async function log (){
+              await login(user);
+
+            }
+
             // Attempt to login
-            login(user);
+            log().then((res)=>{
+              setSubmitting(false);
+            })
     }
 
     useEffect(() => {
@@ -37,27 +44,22 @@ const SignIn=({
         if (error.id === 'LOGIN_FAIL') {
           setMsg(error.msg.msg);
           setSubmitting(false);
-          setLoading(false)
+
         } else {
           setMsg(null);
         }
 
-        if(error.status===401||error.msg.msg){
-          setLoading(false)
-        }
-
-        
-    
         // If authenticated
           if (isAuthenticated) {
-            clearErrors();
-            // history.push('/home')
-            window.location.href='/home'
+            // clearErrors();
+            // console.log(isAuthenticated)
+            history.push('/home')
+            // window.location.href='/home'
           }
     
-        //   if (!isAuthenticated){
-        //     setLoading(false)
-        // };
+          if (isAuthenticated===false){
+            setLoading(false)
+        };
       }, [error, isAuthenticated]);
 
     const [loading, setLoading]= useState(true);

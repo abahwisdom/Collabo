@@ -2,7 +2,7 @@ import React, {useContext, useState } from 'react';
 import { Button,Form, Spinner} from 'react-bootstrap'
 import { useForm} from "react-hook-form";
 import Axios from 'axios';
-import setCurrentContext from '../context/setCurrent';
+import setCurrentContext from '../../context/setCurrent';
 
 const DisplayModal=(props)=>{
 
@@ -22,14 +22,15 @@ const DisplayModal=(props)=>{
             description: data.description
         })
         .then((res)=>{
-            console.log(res);
+            // console.log(res);
             Axios.get(`/api/projects/${props.currentProject._id}/specific`)
             .then((project)=>{setCurrent(project.data)})
             .then(()=>setSubmitting(false))
             .then(()=>props.handleClose())
-            .catch(err=> console.log(err))
-          }).catch(err=> console.log(err))
-        console.log(data);
+            // .catch(err=> console.log(err))
+          })
+          // .catch(err=> console.log(err))
+        // console.log(data);
       };
 
     const setCurrent= useContext(setCurrentContext);
@@ -37,12 +38,13 @@ const DisplayModal=(props)=>{
     function deleteTask(){
         Axios.delete(`/api/projects/${props.currentProject._id}/task/${props.task.task_id}`)
         .then((res)=>{
-            console.log(res);
+            // console.log(res);
             Axios.get(`/api/projects/${props.currentProject._id}/specific`)
             .then((project)=>{setCurrent(project.data)})
             .then(()=>props.handleClose())
-            .catch(err=> console.log(err))
-          }).catch(err=> console.log(err))
+            // .catch(err=> console.log(err))
+          })
+          // .catch(err=> console.log(err))
     }
   
 

@@ -1,9 +1,10 @@
-import React, {useState} from 'react';
-import {Container, InputGroup, FormControl, Button, Modal, Form, Spinner, Card, Accordion, Jumbotron} from 'react-bootstrap'
+import React, {useState, useContext} from 'react';
+import {Container, InputGroup, FormControl, Button, Modal, Form, Spinner, Jumbotron} from 'react-bootstrap'
 import { useForm } from "react-hook-form";
-import DisplayProjects from './display/home-projects';
-import DisplayModal from './modals/home-modal';
+import DisplayProjects from './home-projects';
+import DisplayModal from './home-modal';
 import axios from 'axios';
+import setRefetchContext from '../../context/setRefetch';
 
 
 const Home=(props)=>{
@@ -28,9 +29,11 @@ const Home=(props)=>{
 
     const [stillSubmitting, setSubmitting]= useState(false);
 
+    const refetch= useContext(setRefetchContext);
+
     function onSubmitNew(data) {
       setSubmitting(true)
-        console.log(data);
+        // console.log(data);
         axios.post('/api/projects',
         {
           title: data.title,
@@ -39,8 +42,8 @@ const Home=(props)=>{
           creator_name: props.user.name
         })
         .then(()=>setSubmitting(false))
-        .then(()=>{window.location.href='/home'})
-        .catch(err=> console.log(err))
+        .then(()=>{refetch(); handleCloseNew()})
+        // .catch(err=> console.log(err))
       }
 
     const [modalProject, setModalProject]=useState([]);
@@ -136,7 +139,7 @@ const Home=(props)=>{
             <Modal.Title>{modalProject.title}</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-              <DisplayModal project={modalProject}/>
+              <DisplayModal project={modalProject} handleClose={handleClose}/>
               
           </Modal.Body>
           <Modal.Footer>

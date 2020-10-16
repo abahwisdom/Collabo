@@ -76,7 +76,7 @@ router.get('/:uid', (req, res)=>{
 //GET
 router.get('/email/:mail', (req, res)=>{
     User.find({email:req.params.mail})
-    .then((user)=>{console.log(user);if (user) res.json(user)})
+    .then((user)=>{if (user) res.json(user)})
     .catch((err)=>{res.status(400).json({"error": err})});
 });
 

@@ -1,17 +1,17 @@
 import React, {useState, useEffect, useContext} from 'react';
-import {Button} from 'react-bootstrap'
 
 import Axios from 'axios';
 import setCurrentContext from '../context/setCurrent';
+import MyButton from '../auth/components/button';
 
 
 const DisplayMembersModal=(props)=>{
 
     const setCurrent= useContext(setCurrentContext);
+    const [submitting, setSubmitting]= useState(false);
 
-    const [actions, setActions]= useState(<Button variant='primary' size="sm" onClick={addMember} >Add To Project</Button>)
-  
     function addMember(){
+      setSubmitting(true);
       Axios.post(`/api/projects/${props.currentProject._id}/new-member`, 
         {
           member_name: props.member.name,
@@ -20,7 +20,7 @@ const DisplayMembersModal=(props)=>{
         }
        ).then(()=>{
          Axios.get(`/api/projects/${props.currentProject._id}/specific`)
-         .then((project)=>{setCurrent(project.data)})
+         .then((project)=>{setCurrent(project.data); setSubmitting(false)})
        })
     }
 
@@ -32,25 +32,18 @@ const DisplayMembersModal=(props)=>{
         props.member.email.toLowerCase().includes(props.search.toLowerCase())===false){
           setDisplay('none')
         }else{setDisplay('table-row')}
-    },[props.search, props.member.name])
+    },[props.search, props.member.name, props.member.email])
     
     
-    useEffect(()=>{
-
-      const found= props.currentProject.members.find(member=>
-        member.member_id===props.member._id
-      );
-      if (found){
-        setActions(<div><em>Already a member</em></div>)
-      }
-    },[props.currentProject, props.member._id])
-
     // useEffect(()=>{
-    //   if (props.member.name.indexOf(props.searchInput)!==-1){
-    //     setDisplay('table-row')
-    //   }
-    // },[props.searchInput])
+
+      
+    // },[props.currentProject, props.member._id])
   
+    const found= props.currentProject.members.find(member=>
+      member.member_id===props.member._id
+    );
+
     return(
       <>
       <tr style={{'display':`${display}`}}>
@@ -58,8 +51,10 @@ const DisplayMembersModal=(props)=>{
         <td>{props.member.name}</td>
         <td>{props.member.email} </td>
         <td>
-          {actions}
-        </td>
+        { found ? <div><em>Member</em></div>:
+          <MyButton variant='primary' size="sm" handleClick={addMember} label='Add' stillSubmitting={submitting} >Add To Project</MyButton>
+        }
+          </td>
       </tr>
       </>
     )

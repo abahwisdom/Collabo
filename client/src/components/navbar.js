@@ -1,44 +1,44 @@
-import React, {useState} from 'react';
-import {Button, Modal, Form, Navbar, Nav, Container, InputGroup, FormControl} from 'react-bootstrap'
+import React, {useState, useContext} from 'react';
+import {Button, Modal, Form, Navbar, Nav, Spinner} from 'react-bootstrap'
 import { useForm } from "react-hook-form";
+import isEmail from 'validator/lib/isEmail';
 import { Link } from 'react-router-dom';
-import DisplayProjects from './display/home-projects';
 import { connect } from 'react-redux';
 import { logout } from '../redux/actions/authActions';
+import Axios from 'axios';
+import setRefetchContext from './context/setRefetch';
 
 
 const Navigation=({ logout, ...props})=>{
-
-  // const setC
 
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  const [showEnd, setShowEnd] = useState(false);
-
-  const handleCloseEnd = () => setShowEnd(false);
-  const handleShowEnd = () => setShowEnd(true);
-
   const { register, handleSubmit, errors, formState } = useForm({
     mode: "onBlur",
   });
 
   const [stillSubmitting, setSubmitting]= useState(false)
+  const refetch= useContext(setRefetchContext);
 
   function onSubmit(data) {
     setSubmitting(true);
-    console.log(data)
-    fetch('http://slowwly.robertomurray.co.uk/delay/3000/url/https://jsonplaceholder.typicode.com/todos/1')
-    .then(response => response.json())
-    .then(json => console.log(json))
-    .then(()=>setSubmitting(false))
-    console.log(data)
+    // console.log(data);
+    const {name, email}= data;
+    Axios.put(`/api/users/${props.user._id}`, {
+      name,
+      email
+    })
+    .then((res)=>{
+      // console.log(res);
+      refetch();
+      setSubmitting(false); 
+      handleClose()
+    })
     
   }
-
-  const [search, setSearch]= useState('')
 
     return(
       <>
@@ -49,11 +49,11 @@ const Navigation=({ logout, ...props})=>{
           <Nav className="mr-auto">
             <Nav.Link href='#2' as={Link} to='/home' >My Projects</Nav.Link>
             <Nav.Link href='#4' as={Link} to='/home/member-projects' >Others' Projects</Nav.Link>
-            {/* <Nav.Link href='#' onClick={handleShowEnd}>Closed Projects</Nav.Link> */}
+            <Nav.Link href='#'  as={Link} to='/home/ended-projects' >Ended Projects</Nav.Link>
             {/* <Nav.Link href='#notifications' >Notifications</Nav.Link> */}
           </Nav>
           <Nav>
-            {/* <Nav.Link onClick={handleShow} href='#3' >Edit Profile</Nav.Link> */}
+            <Nav.Link onClick={handleShow} href='#edit-profile' >Edit Profile</Nav.Link>
             <Nav.Link href='#1' onClick={logout}>
               Sign Out
             </Nav.Link>
@@ -66,42 +66,48 @@ const Navigation=({ logout, ...props})=>{
           <Modal.Title>Edit Profile</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-            <Form onSubmit={handleSubmit(onSubmit)} >
-                <Form.Group controlId="name">
-                    <Form.Label>Name</Form.Label>
-                    <Form.Control 
-                        name="Name"
+          <Form onSubmit={handleSubmit(onSubmit)} >
+              <Form.Group controlId="name">
+                <Form.Label>Name</Form.Label>
+                <Form.Control 
+                        name="name"
                         type="text"
-                        required
+                        // required
+                        defaultValue={props.user.name}
                         ref={register({
-                            required: true,
-                            minLength: 3,
-                            maxLength: 20,
+                            required: {value:true, message:'*Name is required'},
+                            minLength: {value:3, message:'*Name must be at least 3 letters'},
+                            maxLength: {value:25, message:'*Name cannot be more than 25 letters'}
                           })}
-                    />
-                </Form.Group>
+                />
+                 {errors.name && (<div className="error text-danger">{errors.name.message}</div>)}
+              </Form.Group>
                
-                <Form.Group controlId="email">
-                    <Form.Label>Email</Form.Label>
-                    <Form.Control
+              <Form.Group controlId="email">
+                <Form.Label>Email</Form.Label>
+                <Form.Control
                         name='email'
-                        type="email"
+                        // type="email"
+                        defaultValue={props.user.email}
                         required
                         ref={register({
-                            required: true
-                          })}
+                          required: {value: true, message: '*Please enter a valid email'},
+                          validate: (input) => isEmail(input)
+                        })}
 
                     
-                    />
-                </Form.Group>
+                />
+                 {errors.email && (<div className="error text-danger">*Please Enter A Valid Email</div>)}
+              </Form.Group>
               
-                <Button variant="primary" className='mr-4' type="submit" disabled={formState.isSubmitting||stillSubmitting} >
+              <Button variant="primary" className='mr-4' type="submit" disabled={formState.isSubmitting||stillSubmitting} >
+              {stillSubmitting && <Spinner animation="border" className="align-middle spinner-button" role="status"/>}
                  Submit
-                </Button>
-                <Button variant="danger">
+              </Button>
+              <Button variant="danger" onClick={handleClose}>
                  Cancel
-                </Button>
-            </Form>
+              </Button>
+          </Form>
             
         </Modal.Body>
         <Modal.Footer>
@@ -112,43 +118,7 @@ const Navigation=({ logout, ...props})=>{
         </Modal.Footer>
       </Modal>
 
-      <Modal show={showEnd} onHide={handleCloseEnd} centered size='lg'>
-        <Modal.Header closeButton>
-          <Modal.Title>CLOSED PROJECTS</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-        <Container>
-          {/* <h3>CLOSED PROJECTS</h3> */}
-          <InputGroup className="mb-3">
-            <InputGroup.Prepend>
-              <InputGroup.Text id="inputGroup-sizing-default">Search</InputGroup.Text>
-            </InputGroup.Prepend>
-            <FormControl
-              aria-label="Default"
-              aria-describedby="inputGroup-sizing-default"
-              onChange={(e)=>setSearch(e.target.value)}
-            />
-          </InputGroup>
-        </Container>
-
-        <Container >
-        {props.closedProjects.map((project=>{
-      return(
-      <React.Fragment>
-        <DisplayProjects project={project} handleShow={handleShow} search={search}/>
-      </React.Fragment>
-      )}))}
-        </Container>  
-        
-            
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleCloseEnd}>
-            Close
-          </Button>
-
-        </Modal.Footer>
-      </Modal>
+      
       </>
     )
 }

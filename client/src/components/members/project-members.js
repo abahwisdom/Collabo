@@ -12,7 +12,7 @@ const DisplayMembers=(props)=>{
     function deleteMember(){
         Axios.delete(`/api/projects/${props.currentProject._id}/member/${props.member.member_id}`)
         .then((res)=>{ 
-         console.log(res);
+        //  console.log(res);
          Axios.get(`/api/projects/${props.currentProject._id}/specific`)
          .then((project)=>{setCurrent(project.data)})
        })
@@ -26,7 +26,7 @@ const DisplayMembers=(props)=>{
         props.member.member_email.includes(props.search.toLowerCase())===false){
           setDisplay('none')
         }else{setDisplay('table-row')}
-    },[props.search, props.member.member_name])
+    },[props.search, props.member.member_name, props.member.member_email])
 
     return(
         <>

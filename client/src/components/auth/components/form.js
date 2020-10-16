@@ -20,6 +20,8 @@ const MyForm=(props)=>{
     
     }
 
+    const submitting= props.stillSubmitting||formState.isSubmitting;
+
     return(
         <>
 
@@ -84,8 +86,8 @@ const MyForm=(props)=>{
                 <MyButton
                 label={props.handleClickLabel} 
                 // handleClick={props.handleClick} 
-                stillSubmitting={props.stillSubmitting}
-                disabled={formState.isSubmitting||props.stillSubmitting}
+                stillSubmitting={submitting}
+                // disabled={formState.isSubmitting||props.stillSubmitting}
                 type='submit'
                 className='or'
                 />

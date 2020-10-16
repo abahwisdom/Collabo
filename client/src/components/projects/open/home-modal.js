@@ -1,7 +1,8 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import {Button, Form, Spinner} from 'react-bootstrap'
 import { useForm } from "react-hook-form";
 import axios from 'axios';
+import setRefetchContext from '../../context/setRefetch';
 
 const DisplayModal=(props)=>{
 
@@ -10,17 +11,19 @@ const DisplayModal=(props)=>{
       });
 
     const [stillSubmitting, setSubmitting]= useState(false);
+
+    const refetch= useContext(setRefetchContext);
   
       function onSubmit(data) {
         setSubmitting(true);
-        console.log(data);
+        // console.log(data);
         axios.put(`/api/projects/${props.project._id}/edit`, {
             title: data.title,
             description: data.description,
         })
         .then(()=>setSubmitting(false))
-        .then(()=>{window.location.href='/home'})
-        .catch(err=> console.log(err))
+        .then(()=>{refetch(); props.handleClose()})
+        // .catch(err=> console.log(err))
         };
   
 
@@ -63,9 +66,9 @@ const DisplayModal=(props)=>{
                   {stillSubmitting && <Spinner animation="border" className="align-middle spinner-button" role="status"/>}
                   Submit
                   </Button>
-                  <Button variant="danger" >
+                  {/* <Button variant="danger" >
                   Delete Project
-                  </Button>
+                  </Button> */}
               </Form>
         </>
     )
