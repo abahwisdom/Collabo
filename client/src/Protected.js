@@ -86,7 +86,7 @@ function Protected({UID, isAuthenticated, clearErrors}) {
     const [loading, setLoading]= useState(true);
 
     if (loading) {return(
-      <Container className='text-center' ><Spinner animation="border" variant="primary" className="align-middle spinner-app" role="status"/></Container>
+      <Spinner animation="grow" variant="primary" className="align-middle spinner-app mt-auto" role="status"/>
     )}
 
     clearErrors();
