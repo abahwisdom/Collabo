@@ -9,6 +9,7 @@ body {
     font-family: 'Titillium Web';
     padding-bottom: 50px; 
     position: relative;
+    min-height: 100vh;
 }
 
 #root{
