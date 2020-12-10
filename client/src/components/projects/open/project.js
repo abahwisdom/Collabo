@@ -32,7 +32,7 @@ const Project=(props)=>{
           {/* <Link variant='danger'>Close Project</Link> */}
         </div>
         <h3 className='playfair'>{props.currentProject.title} </h3>
-        <p>{props.currentProject.description}</p>
+        <p className='desc-title'>{props.currentProject.description}</p>
         <MyButton stillSubmitting={submitting} variant='outline-danger' size='sm'className='mb-4' handleClick={closeProject} label='End Project'/>
         
         

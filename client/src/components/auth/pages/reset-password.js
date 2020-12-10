@@ -16,7 +16,7 @@ const ResetPassword=(props)=>{
     return(
         <>
         <Container className='auth-container'>
-            <h2 className='m-auto text-center playfair'>Reset Password</h2>
+            <h2 className='m-auto text-center nav-title'>Reset Password</h2>
 
             <MyForm 
                 handleClickLabel='Reset Password' 

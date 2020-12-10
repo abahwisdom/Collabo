@@ -54,7 +54,7 @@ const Home=(props)=>{
         <>
         <Container>
         <Button className="side-text" size='sm' onClick={handleShowNew}>Create New Project</Button>
-        <h4>My Projects</h4>
+        <h4 className='playfair' >My Projects</h4>
         <InputGroup className="mb-3">
           <InputGroup.Prepend>
             <InputGroup.Text id="inputGroup-sizing-default">Search</InputGroup.Text>
@@ -66,7 +66,7 @@ const Home=(props)=>{
           />
         </InputGroup>
       </Container>
-
+      <div className='' >
       {props.projects.length>0 ?
       props.projects.map((project=>{
       return(
@@ -79,7 +79,7 @@ const Home=(props)=>{
       </Container>
       </Jumbotron>
     }
-      
+      </div>
 
       <Modal show={showNew} onHide={handleCloseNew} centered size='lg'className='new'>
         <Modal.Header closeButton>

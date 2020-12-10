@@ -47,10 +47,11 @@ const DisplayEnded=(props)=>{
         <>
         <Container style={{'display':`${display}`}} >
           <Card className="mt-2">
-            <Card.Header className=' text-white'><h5>{props.project.title}</h5>
+            <Card.Header className='project-title'><h5>{props.project.title}</h5>
+            <Card.Subtitle className="mb-2 date-card">{props.project.date} </Card.Subtitle>
             </Card.Header>
             <Card.Body>
-              <Card.Subtitle className="mb-2">{props.project.date} </Card.Subtitle>
+              {/* <Card.Subtitle className="mb-2 date-card">{props.project.date} </Card.Subtitle> */}
               <Card.Text>
                 <h6>{props.project.description}</h6>
               </Card.Text>

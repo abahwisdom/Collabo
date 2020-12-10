@@ -29,7 +29,7 @@ function deleteMember(){
           <h3 className='playfair'>{props.currentProject.title} </h3>
           <h6>Admin: {props.currentProject.creator_name}</h6>
           <h6 style={{'font-size':'smaller'}}>{props.currentProject.date}</h6>
-          <p>{props.currentProject.description}</p>
+          <p className='desc-title' >{props.currentProject.description}</p>
         </Container>
 
         <Tasks currentProject={props.currentProject} user={props.user} setOther={props.setOther} />

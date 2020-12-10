@@ -127,6 +127,7 @@ function Protected({UID, isAuthenticated, clearErrors}) {
         </Route>
        
       </Switch>
+      <div className='footer'>Collabo (c)2020</div>
       </setRefetchContext.Provider>
       </setCurrentContext.Provider>
     </>

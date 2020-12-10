@@ -48,8 +48,8 @@ const DisplayTasks=(props)=>{
         <Card className="mb-2" style={{'display':`${display}`}} >
         <Card.Body>
           <Card.Title><h4>{props.task.title} </h4></Card.Title>
-          <Card.Subtitle>{props.task.date} </Card.Subtitle>
-          {props.task.lead.member_name &&<Card.Subtitle className="mb-2">Lead: {props.task.lead.member_name} </Card.Subtitle>}
+          <Card.Subtitle className='date-card'>{props.task.date} </Card.Subtitle>
+          {props.task.lead.member_name &&<Card.Subtitle className="mb-2 date-card">Lead: {props.task.lead.member_name} </Card.Subtitle>}
           <Card.Text>
             <h6>{props.task.description}</h6>
           </Card.Text>

@@ -19,10 +19,10 @@ const DisplayProjects=(props)=>{
         <>
         <Container style={{'display':`${display}`}} >
         <Card className="mt-2">
-        <Card.Header className=' text-white'><h5>{props.project.title}</h5></Card.Header>
+        <Card.Header className='project-title'><h5>{props.project.title}</h5> <h6 className='date-card' style={{'font-size':'smaller'}}>{props.project.date}</h6></Card.Header>
           <Card.Body>
             <Card.Text>
-            <h6 style={{'font-size':'smaller'}}>{props.project.date}</h6>
+            {/* <h6 className='date-card' style={{'font-size':'smaller'}}>{props.project.date}</h6> */}
               <h6>{props.project.description}</h6>
             </Card.Text>
             <div>

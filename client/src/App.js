@@ -1,6 +1,7 @@
 import React, { useEffect, Suspense } from 'react';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import './app.scss';
+// import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
 import store from './redux/store';

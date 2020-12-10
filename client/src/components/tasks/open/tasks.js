@@ -89,7 +89,7 @@ const Tasks=(props)=>{
   
         <Container >
         <Button className="side-text" size='sm' onClick={handleShowNew}>Add New Task</Button>
-        <h3>Tasks </h3>
+        <h3 >Tasks </h3>
         
           <Form.Group controlId="lead" >
             <Form.Control as="select" name="type" onChange={(e)=>setTaskType(e.target.value)}>

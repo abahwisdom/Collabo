@@ -71,7 +71,7 @@ const SignIn=({
     return(
         <>
         <Container className='mb-2'>
-        <h2 className='m-auto text-center playfair'>Collabo</h2>
+        <h2 className='m-auto text-center nav-title'>Collabo</h2>
         </Container>
         <Container className='auth-container'>
         {msg ? <Alert className='text-center' variant="danger">{msg}</Alert> : null}

@@ -35,8 +35,8 @@ const DisplayTasks=({setOther, ...props})=>{
             <Card.Body>
               {props.user._id===props.task.lead.member_id && <Card.Title><h6 className='text-danger'>You are the lead for this task</h6></Card.Title>}
               <Card.Title><h4>{props.task.title} </h4></Card.Title>
-              <Card.Subtitle>{props.task.date} </Card.Subtitle>
-              {props.task.lead.member_name &&<Card.Subtitle className="mb-2">Lead: {props.user._id===props.task.lead.member_id ? 'You' : props.task.lead.member_name} </Card.Subtitle>}
+              <Card.Subtitle className='date-card'>{props.task.date} </Card.Subtitle>
+              {props.task.lead.member_name &&<Card.Subtitle className="mb-2 date-card">Lead: {props.user._id===props.task.lead.member_id ? 'You' : props.task.lead.member_name} </Card.Subtitle>}
               <Card.Text>
                 <h6>{props.task.description}</h6>
               </Card.Text>

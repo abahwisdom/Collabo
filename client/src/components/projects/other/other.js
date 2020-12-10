@@ -10,7 +10,7 @@ const Other=(props)=>{
         <>
         <Container>
         {/* <Button className="side-text" size='sm' onClick={handleShowNew}>Create New Project</Button> */}
-        <h4>Others' Projects</h4>
+        <h4 className='playfair' >Others' Projects</h4>
         <InputGroup className="mb-3">
           <InputGroup.Prepend>
             <InputGroup.Text id="inputGroup-sizing-default">Search</InputGroup.Text>
