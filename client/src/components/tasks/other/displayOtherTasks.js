@@ -31,7 +31,7 @@ const DisplayTasks=({setOther, ...props})=>{
   
       return(
           <>
-          <Card className="mb-2" style={{'display':`${display}`}} >
+          <Card style={{'display':`${display}`}} >
             <Card.Body>
               {props.user._id===props.task.lead.member_id && <Card.Title><h6 className='text-danger'>You are the lead for this task</h6></Card.Title>}
               <Card.Title><h4>{props.task.title} </h4></Card.Title>

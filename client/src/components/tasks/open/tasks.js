@@ -99,7 +99,7 @@ const Tasks=(props)=>{
             </Form.Control>
           </Form.Group>
         
-        
+        <div className='flex-card' >
        {props.currentProject.tasks.length<1?<Jumbotron fluid className='mt-4'>
             <Container>
               <h1>No Tasks Created</h1>
@@ -111,6 +111,7 @@ const Tasks=(props)=>{
                 <DisplayTasks task={task} taskType={taskType} handleShow={handleShow} currentProject={props.currentProject} search={search}/>
               </React.Fragment>
               )})) }
+              </div>
   
         </Container>
   

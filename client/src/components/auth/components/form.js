@@ -15,7 +15,8 @@ const MyForm=(props)=>{
         color: '#495057',
         'backgroundColor': '#fff',
         'borderColor': '#dc3545',
-        outline: 0,
+        'outline': 0,
+        // 'font-size': '12px',
         'boxShadow': '0 0 0 0.2rem rgb(223 53 120 / 37%)',
     
     }
@@ -28,13 +29,13 @@ const MyForm=(props)=>{
             <Form onSubmit={handleSubmit(props.handleSubmit)} >
                 {props.name && 
                 <Form.Group controlId="name">
-                    <Form.Label>Name</Form.Label>
+                    {/* <Form.Label>Name</Form.Label> */}
                     <Form.Control 
                         name="name"
                         type="text"
-                        // required
+                        placeholder='Username'
                         ref={register({
-                            required: {value: true, message: '*Please enter your name'},
+                            required: {value: true, message: '*Name is required'},
                             minLength: {value: 3, message: '*Name must be at least 3 letters'},
                             maxLength: {value: 25, message: '*Name cannot be more than 25 letters'},
                           })}
@@ -47,29 +48,31 @@ const MyForm=(props)=>{
                 
                 {props.email &&
                 <Form.Group controlId="email">
-                    <Form.Label>Email</Form.Label>
+                    {/* <Form.Label>Email</Form.Label> */}
                     <Form.Control
                         name='email'
                         type="email"
+                        placeholder='Email'
                         // required
                         ref={register({
-                            required: {value: true, message: '*Please enter a valid email'},
+                            required: {value: true, message: '*Email is required'},
                             validate: (input) => isEmail(input)
                           })}
                         style= {errors.email? errorStyle:null }
                     
                     />
                     {errors.email && (
-                      <div className="error text-danger">*Please enter a valid email</div>
+                      <div className="error text-danger mt-1">{errors.email.message}</div>
                     )}
                 </Form.Group>}
 
                 {props.password &&
                 <Form.Group controlId="password">
-                    <Form.Label>Password</Form.Label>
+                    {/* <Form.Label>Password</Form.Label> */}
                     <Form.Control
                         name='password'
                         type="password"
+                        placeholder='Password'
                         // required
                         ref={register({
                             required: {value: true, message: '*Password is required'},
@@ -79,7 +82,7 @@ const MyForm=(props)=>{
                     
                     />
                     {errors.password && (
-                      <div className="error text-danger">{errors.password.message}</div>
+                      <div className="error text-danger mt-1">{errors.password.message}</div>
                     )}
                 </Form.Group>}
 

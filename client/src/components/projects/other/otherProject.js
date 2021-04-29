@@ -24,7 +24,7 @@ function deleteMember(){
     
     return(
         <>
-        <Container>
+        <Container className="mt-4 pt-3">
           <MyButton className="side-text" size='sm' handleClick={deleteMember} variant='danger' label='Leave Project'></MyButton>
           <h3 className='playfair'>{props.currentProject.title} </h3>
           <h6>Admin: {props.currentProject.creator_name}</h6>

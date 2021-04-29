@@ -16,8 +16,7 @@ const DisplayOtherProjects=(props)=>{
 
     return(
         <>
-        <Container style={{'display':`${display}`}} >
-          <Card className="mt-2">
+          <Card className="mt-2" style={{'display':`${display}`}}>
             <Card.Header className='project-title'><h5>{props.project.title}</h5>
               <div className='card-subtitle' style={{'font-family': 'Titillium Web'}}>Admin: {props.project.creator_name} </div>
               <Card.Subtitle className="mb-2 date-card">{props.project.date} </Card.Subtitle>
@@ -32,7 +31,6 @@ const DisplayOtherProjects=(props)=>{
               </div>
             </Card.Body>
           </Card>
-        </Container> 
         </>
     )
 }

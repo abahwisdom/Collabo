@@ -45,7 +45,7 @@ const DisplayTasks=(props)=>{
 
     return(
         <>
-        <Card className="mb-2" style={{'display':`${display}`}} >
+        <Card style={{'display':`${display}`}} >
         <Card.Body>
           <Card.Title><h4>{props.task.title} </h4></Card.Title>
           <Card.Subtitle className='date-card'>{props.task.date} </Card.Subtitle>

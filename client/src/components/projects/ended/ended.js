@@ -8,7 +8,7 @@ const Ended=(props)=>{
 
     return(
         <>
-        <Container>
+        <Container className="mt-4 pt-3">
         {/* <Button className="side-text" size='sm' onClick={handleShowNew}>Create New Project</Button> */}
         <h4 className='playfair' >Ended Projects</h4>
         <InputGroup className="mb-3">
@@ -23,7 +23,7 @@ const Ended=(props)=>{
         </InputGroup>
       </Container>
     
-      
+      <div className='flex-card' >
       {props.projects.length>0 ?
       props.projects.map((project=>{
       return(
@@ -36,6 +36,7 @@ const Ended=(props)=>{
       </Container>
       </Jumbotron>
       }
+      </div>
 
         
         </>

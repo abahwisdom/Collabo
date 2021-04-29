@@ -45,8 +45,8 @@ const DisplayEnded=(props)=>{
 
     return(
         <>
-        <Container style={{'display':`${display}`}} >
-          <Card className="mt-2">
+        
+          <Card className="mt-2" style={{'display':`${display}`}}  >
             <Card.Header className='project-title'><h5>{props.project.title}</h5>
             <Card.Subtitle className="mb-2 date-card">{props.project.date} </Card.Subtitle>
             </Card.Header>
@@ -61,7 +61,7 @@ const DisplayEnded=(props)=>{
               </div>
             </Card.Body>
           </Card>
-        </Container> 
+        
         </>
     )
 }

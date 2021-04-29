@@ -1,5 +1,5 @@
 import React, {useState, useContext} from 'react';
-import {Container, InputGroup, FormControl, Button, Modal, Form, Spinner, Jumbotron} from 'react-bootstrap'
+import {Container, InputGroup, FormControl, Button, Modal, Form, Spinner, Jumbotron, Col, Row} from 'react-bootstrap'
 import { useForm } from "react-hook-form";
 import DisplayProjects from './home-projects';
 import DisplayModal from './home-modal';
@@ -50,9 +50,14 @@ const Home=(props)=>{
 
     const [search, setSearch]= useState('');
 
+    // const card_color=[
+    //   '#1ebfc2', '#f45e29'
+    //   // , '#af28cd'
+    // ]
+
     return(
         <>
-        <Container>
+        <Container className="mt-4 pt-3">
         <Button className="side-text" size='sm' onClick={handleShowNew}>Create New Project</Button>
         <h4 className='playfair' >My Projects</h4>
         <InputGroup className="mb-3">
@@ -66,14 +71,14 @@ const Home=(props)=>{
           />
         </InputGroup>
       </Container>
-      <div className='' >
+      <div className='flex-card' >
       {props.projects.length>0 ?
-      props.projects.map((project=>{
+      props.projects.map((project, index)=>{
       return(
       <React.Fragment>
-        <DisplayProjects project={project} handleShow={handleShow} setCurrent={props.setCurrent} search={search}/>
+          <DisplayProjects  project={project} handleShow={handleShow} setCurrent={props.setCurrent} search={search}/>
       </React.Fragment>
-      )})) : <Jumbotron fluid className='mt-4'>
+      )}) : <Jumbotron fluid className='mt-4'>
       <Container>
       <h1>You Do Not Have Any Open Projects</h1>
       </Container>

@@ -38,7 +38,7 @@ const Tasks=(props)=>{
 
       <Container >
         <h3>Tasks </h3>
-      
+        <div className='flex-card' >
         {props.currentProject.tasks.length<1?<Jumbotron fluid className='mt-4'>
           <Container>
             <h1>No Tasks Created</h1>
@@ -50,7 +50,7 @@ const Tasks=(props)=>{
               <DisplayTasks task={task} currentProject={props.currentProject} search={search} user={props.user} setOther={props.setOther}/>
             </React.Fragment>
             )})) }
-
+          </div>
       </Container>
 
     </>

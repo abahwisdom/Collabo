@@ -25,7 +25,7 @@ const Project=(props)=>{
 
     return(
         <>
-        <Container>
+        <Container className="mt-4 pt-3">
         <div className='side-text'>
           <Link className='mr-2' to='/home/project'>Tasks</Link>
           <Link to='/home/project/members'>Members</Link>

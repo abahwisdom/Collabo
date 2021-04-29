@@ -2,15 +2,15 @@
 // @import "node_modules/bootstrap/scss/variables";
 
 
-$wine: #7D1538;
-$bluish:#0A122A;
+$wine: #37718E;
+$bluish:#f45e29;
 
 $primary: $wine ;
 $secondary:$bluish;
 
 $theme-colors: (
-  primary: #7D1538,
-  secondary:#0A122A
+  primary: #37718E,
+  secondary:#f45e29
 );
 
 @import "node_modules/bootstrap/scss/bootstrap";

@@ -8,7 +8,7 @@ const Other=(props)=>{
 
     return(
         <>
-        <Container>
+        <Container className="mt-4 pt-3">
         {/* <Button className="side-text" size='sm' onClick={handleShowNew}>Create New Project</Button> */}
         <h4 className='playfair' >Others' Projects</h4>
         <InputGroup className="mb-3">
@@ -23,7 +23,7 @@ const Other=(props)=>{
         </InputGroup>
       </Container>
     
-      
+      <div className='flex-card' >
       {props.projects.length>0 ?
       props.projects.map((project=>{
       return(
@@ -33,9 +33,11 @@ const Other=(props)=>{
       )})) : <Jumbotron fluid className='mt-4'>
       <Container>
       <h1>You are not part of any other project</h1>
+      
       </Container>
       </Jumbotron>
       }
+      </div>
 
         
         </>

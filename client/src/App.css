@@ -1,12 +1,12 @@
 body { 
     padding-top: 70px; 
     /* background-color: #f8f6bf9e; */
-    background: #f8f8f8;
+    background: #d9d8ff52;
     /* background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4' viewBox='0 0 4 4'%3E%3Cpath fill='%235ba8ff' fill-opacity='0.4' d='M1 3h1v1H1V3zm2-2h1v1H3V1z'%3E%3C/path%3E%3C/svg%3E"); */
     /* background: url('./blackboard-2.jpg'); */
     background-attachment: fixed;
     color: #0A122A;
-    font-family: 'Titillium Web';
+    font-family: 'Comfortaa';
     padding-bottom: 50px; 
     position: relative;
     min-height: 100vh;
@@ -43,14 +43,14 @@ body {
 .card-header{
     background-attachment: fixed;
     /* background-color: #bc2c1a17; */
-    background: #ffe7ab;
+    background: none;
     font-family: 'Playfair Display';
     padding-bottom: 0;
     border-bottom: none;
 }
 
 .navbar{
-    background-color: #7D1538;
+    background-color: #37718E;
 }
 
 .btn{
@@ -62,7 +62,7 @@ body {
     flex-direction: column;
     white-space: pre-wrap;
     /* background: #bc2c1a17; */
-    background: #ffe7ab;
+    /* background: #fff; */
 }
 
 .line-h-t{
@@ -156,8 +156,18 @@ body {
 }
 
 .card{
-    border: 3px solid rgb(120 0 40 / 44%);
-    background: none;
+    /* border-left: 30px solid #37718E ; */
+    border:0;
+    background: white;
+    border-top-right-radius: 45px;
+    /* border-bottom-right-radius: 45px; */
+    flex: 1 1 0;
+    /* min-width: 300px;
+    max-width: 600px; */
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0px 0px 6px 1px #ffffff;
 }
 
 h5{
@@ -169,15 +179,15 @@ h5{
 }
 
 .date-card{
-    color: #7d1538;
+    color: #37718E;
     font-family: 'Titillium Web';
 }
 
 .jumbotron {
-    background-color: #7D1538;
-    color: #7d1538;
-    background: #ffe7ab;
-    /* border: 3px solid #7d1538; */
+    background-color: #37718E;
+    color: #37718E;
+    background: none;
+    /* border: 3px solid #37718E; */
     border-radius: 4px;
 }
 
@@ -186,12 +196,16 @@ h5{
 } */
 
 .nav-title{
-    font-family: 'Titan one';
-    color:#7d1538
+    font-family: 'Lithia titles';
+    font-size:40px;
+    font-weight: bold;
+    color:#37718E
 }
 
 .nav-title-nav{
-    font-family: 'Titan one'
+    font-family: 'Lithia titles';
+    font-size:40px;
+    font-weight: bold;
 }
 
 .modal-content{
@@ -209,16 +223,33 @@ h5{
     color: #ffffff;
     text-align: center;
     white-space: nowrap;
-    background-color: #7d1538;
-    border: 1px solid #7d1538;
+    background-color: #37718E;
+    border: 1px solid #37718E;
     border-radius: 0.25rem;
 }
 
 .form-control {
     color: #0a122a;
-    border: 1px solid #be8a9c;
+    /* border: 1px solid #be8a9c; */
 }
 
 .desc-title{
     white-space: pre-wrap;
+}
+
+.error{
+    font-size: 12px
+}
+
+.flex-card{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+    grid-gap: 1rem;
+    padding: 20px;
+}
+
+@media screen and (max-width: 450px){
+    .flex-card{
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr))
+    }
 }

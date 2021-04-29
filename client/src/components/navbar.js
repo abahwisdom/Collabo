@@ -43,7 +43,7 @@ const Navigation=({ logout, ...props})=>{
     return(
       <>
       <Navbar collapseOnSelect expand="lg" variant="dark" fixed="top"> 
-        <Navbar.Brand className='nav-title-nav' style={{color: '#faf9d7'}}>Collabo</Navbar.Brand>
+        <Navbar.Brand className='nav-title-nav'>Collabo</Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="mr-auto">
