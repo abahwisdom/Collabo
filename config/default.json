@@ -1,4 +1,0 @@
-{
-    "mongoURI": "mongodb+srv://stark:stark@collabo.kv5ia.mongodb.net/<dbname>?retryWrites=true&w=majority",
-    "jwtSecret": "col_Labo"
-}

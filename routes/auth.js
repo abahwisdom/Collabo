@@ -1,9 +1,9 @@
 const express= require('express');
 const router= express.Router();
 const bcrypt= require('bcryptjs');
-const config= require('config');
 const jwt= require('jsonwebtoken');
 const auth= require('../middleware/auth');
+const { database } = require('../config')
 
 
 const User = require('../models/Users');
@@ -23,7 +23,7 @@ router.post('/login', (req, res)=>{
             if (!isMatch) return res.status(400).json({msg: 'Invalid Credentials'})
             jwt.sign(
                 {id: user._id},
-                config.get('jwtSecret'),
+                database.JWT_SECRET,
                 {expiresIn: 86400},
                 (err, token)=>{
                     if (err) throw err;

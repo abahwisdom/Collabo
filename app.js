@@ -1,6 +1,7 @@
+require('dotenv').config()
 const express= require('express');
 const mongoose= require('mongoose');
-const config= require('config');
+// const config= require('config');
 
 const app= express();
 app.use(express.json());
@@ -16,10 +17,11 @@ app.use('/api/projects', projectsRoute);
 app.use('/api/auth', authRoute);
 
 const testRoute= require('./routes/test');
+const { database } = require('./config');
 app.use('/api/test', testRoute)
 
 //Database
-const db= config.get("mongoURI");
+const db= database.MONGODB_URI;
 
 mongoose.connect(db, 
     {   
